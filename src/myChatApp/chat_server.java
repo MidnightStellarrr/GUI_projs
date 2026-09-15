@@ -4,11 +4,21 @@
  */
 package myChatApp;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
  *
  * @author Hannah
  */
 public class chat_server extends javax.swing.JFrame {
+    
+    static ServerSocket ss;
+    static Socket s;
+    static DataInputStream dis;
+    static DataOutputStream dout;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(chat_server.class.getName());
 
@@ -41,6 +51,11 @@ public class chat_server extends javax.swing.JFrame {
         jScrollPane1.setViewportView(msg_area);
 
         msg_send.setText("Send");
+        msg_send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msg_sendActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Server");
@@ -83,6 +98,16 @@ public class chat_server extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void msg_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msg_sendActionPerformed
+        try{
+        String msg = "";
+        msg = msg_text.getText();
+        dout.writeUTF(msg);
+        msg_text.setText("");
+        }catch(Exception e){
+        }
+    }//GEN-LAST:event_msg_sendActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -106,6 +131,22 @@ public class chat_server extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new chat_server().setVisible(true));
+        
+        try{
+        String msgin = "";
+        ss = new ServerSocket(1201);
+        s = ss.accept();
+        dis = new DataInputStream(s.getInputStream());
+        dout = new DataOutputStream(s.getOutputStream());
+        
+        while(!msgin.equals("exit")){
+            msgin = dis.readUTF();
+            msg_area.setText(msg_area.getText()+"\n Client: " + msgin);
+        }
+        
+        }catch(Exception e){
+             e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

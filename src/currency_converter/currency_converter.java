@@ -82,6 +82,11 @@ public class currency_converter extends javax.swing.JFrame {
                 secondCountryItemStateChanged(evt);
             }
         });
+        secondCountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secondCountryActionPerformed(evt);
+            }
+        });
         jPanel1.add(secondCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 87, 198, 40));
 
         firstCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose one", "USA", "Nigeria", "Brazil", "Canada", "Kenya", "Indonesia", "India", "Philippine", "Pakistan" }));
@@ -90,7 +95,18 @@ public class currency_converter extends javax.swing.JFrame {
                 firstCountryItemStateChanged(evt);
             }
         });
+        firstCountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstCountryActionPerformed(evt);
+            }
+        });
         jPanel1.add(firstCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 87, 197, 40));
+
+        t1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 133, 197, 38));
         jPanel1.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 133, 198, 38));
 
@@ -196,7 +212,6 @@ public class currency_converter extends javax.swing.JFrame {
             case "India": amountInPounds = amountToChange / Indian_Rupee;break; 
             case "Philippine": amountInPounds = amountToChange / Philippine_Peso;break; 
             case "Pakistan": amountInPounds = amountToChange / Pakistani_Rupee;break; 
-            default:amountInPounds = 0.0;
         }
         
         switch(secondCountry.getSelectedItem().toString()){
@@ -209,12 +224,23 @@ public class currency_converter extends javax.swing.JFrame {
             case "Indonesia": amountChanged = amountInPounds * Indonesian_Rupiah;break;
             case "Philippine": amountChanged = amountInPounds * Philippine_Peso;break; 
             case "Pakistan": amountChanged = amountInPounds * Pakistani_Rupee;break; 
-            default:amountChanged = amountInPounds * 0.0;
         }
         
         String value = String.format("%.2f", amountChanged);
         t2.setText(value);
     }//GEN-LAST:event_convertBtnActionPerformed
+
+    private void firstCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstCountryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstCountryActionPerformed
+
+    private void secondCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondCountryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_secondCountryActionPerformed
+
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t1ActionPerformed
 
     /**
      * @param args the command line arguments
