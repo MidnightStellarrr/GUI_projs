@@ -15,6 +15,8 @@ import java.net.Socket;
  */
 public class chat_server extends javax.swing.JFrame {
     
+    //waits for incoming client connections 
+    //Only used by the server, not the client.
     static ServerSocket ss;
     static Socket s;
     static DataInputStream dis;
