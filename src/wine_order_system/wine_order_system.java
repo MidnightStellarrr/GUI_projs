@@ -517,10 +517,22 @@ public class wine_order_system extends javax.swing.JFrame {
         double sub3 = qty3*yellowWine;
         double sub4 = qty4*otherWine;
         
-        txtSubTotal1.setText(String.valueOf(sub1));
-        txtSubTotal2.setText(String.valueOf(sub2));
-        txtSubTotal3.setText(String.valueOf(sub3));
-        txtSubTotal4.setText(String.valueOf(sub4));
+        txtSubTotal1.setText(String.format("%.2f",sub1));
+        txtSubTotal2.setText(String.format("%.2f",sub2));
+        txtSubTotal3.setText(String.format("%.2f",sub3));
+        txtSubTotal4.setText(String.format("%.2f",sub4));
+        
+        double tax = sub1+sub2+sub3+sub4;
+        txtSubTotal.setText(String.format("%.2f", tax));
+        
+        double subTotal = sub1+sub2+sub3+sub4;
+        txtSubTotal.setText(String.format("%.2f", subTotal));
+        
+        double taxPaid = subTotal*taxPercent/100;
+        txtTax.setText(String.format("%.2f", taxPaid));
+        
+        double netPrice = subTotal+taxPaid;
+        txtNetPrice.setText(String.format("%.2f", netPrice));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
