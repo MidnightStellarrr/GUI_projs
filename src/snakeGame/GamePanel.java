@@ -18,6 +18,11 @@ public class GamePanel extends JPanel{
     private int moves = 0;
     
     private ImageIcon snakeTitle = new ImageIcon(getClass().getResource("snaketitle.jpg"));
+    private ImageIcon leftmouth = new ImageIcon(getClass().getResource("leftmouth.png"));
+    private ImageIcon rightmouth = new ImageIcon(getClass().getResource("rightmouth.png"));
+    private ImageIcon upmouth = new ImageIcon(getClass().getResource("upmouth.png"));
+    private ImageIcon downmouth = new ImageIcon(getClass().getResource("downmouth.png"));
+    private ImageIcon snakeimage = new ImageIcon(getClass().getResource("snakeimage.png"));
     GamePanel(){
         
     }
@@ -45,6 +50,21 @@ public class GamePanel extends JPanel{
             moves++;
         }
         
+        if(left){
+            leftmouth.paintIcon(this, g, snakexlength[0], snakeylength[0]);
+        }
+        if(right){
+            rightmouth.paintIcon(this, g, snakexlength[0], snakeylength[0]);
+        }
+        if(up){
+            upmouth.paintIcon(this, g, snakexlength[0], snakeylength[0]);
+        }
+        if(down){
+            downmouth.paintIcon(this, g, snakexlength[0], snakeylength[0]);
+        }
         
+        for(int i=1;i<lengthOfSnake;i++){
+            snakeimage.paintIcon(this, g, snakexlength[i], snakeylength[i]);
+        }
     }
 }
