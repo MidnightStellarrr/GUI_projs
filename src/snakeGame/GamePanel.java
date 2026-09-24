@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class GamePanel extends JPanel{
     
@@ -23,6 +24,10 @@ public class GamePanel extends JPanel{
     private ImageIcon upmouth = new ImageIcon(getClass().getResource("upmouth.png"));
     private ImageIcon downmouth = new ImageIcon(getClass().getResource("downmouth.png"));
     private ImageIcon snakeimage = new ImageIcon(getClass().getResource("snakeimage.png"));
+    
+    private Timer timer;
+    private int delay = 100;
+    
     GamePanel(){
         
     }
