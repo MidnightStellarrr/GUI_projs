@@ -1,11 +1,13 @@
 package snakeGame;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements ActionListener{
     
     private int[] snakexlength = new int[750];
     private int[] snakeylength = new int[750];
@@ -29,7 +31,8 @@ public class GamePanel extends JPanel{
     private int delay = 100;
     
     GamePanel(){
-        
+        timer = new Timer(delay,this);
+        timer.start();
     }
     
     @Override
@@ -71,5 +74,34 @@ public class GamePanel extends JPanel{
         for(int i=1;i<lengthOfSnake;i++){
             snakeimage.paintIcon(this, g, snakexlength[i], snakeylength[i]);
         }
+        
+        g.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for(int i =lengthOfSnake - 1;i > 0;i--){
+            snakexlength[i] = snakexlength[i-1];
+            snakeylength[i] = snakeylength[i-1];
+        }
+        
+        if(left){
+            snakexlength[0] = snakexlength[0] - 25;
+        }
+        if(right){
+            snakexlength[0] = snakexlength[0] + 25;
+        }
+        
+        if(up){
+            snakeylength[0] = snakeylength[0] - 25;
+        }
+        if(down){
+            snakeylength[0] = snakeylength[0] + 25;
+        }
+        
+        if(snakexlength[0] > 850)snakexlength[0] = 25;
+        if(snakexlength[0] > 850)snakexlength[0] = 850;
+        repaint();
+        
     }
 }
