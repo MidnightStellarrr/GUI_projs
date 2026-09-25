@@ -3,11 +3,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener{
+public class GamePanel extends JPanel implements ActionListener, KeyListener{
     
     private int[] snakexlength = new int[750];
     private int[] snakeylength = new int[750];
@@ -31,6 +33,10 @@ public class GamePanel extends JPanel implements ActionListener{
     private int delay = 100;
     
     GamePanel(){
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(true);
+        
         timer = new Timer(delay,this);
         timer.start();
     }
@@ -100,8 +106,48 @@ public class GamePanel extends JPanel implements ActionListener{
         }
         
         if(snakexlength[0] > 850)snakexlength[0] = 25;
-        if(snakexlength[0] > 850)snakexlength[0] = 850;
+        if(snakexlength[0] < 25)snakexlength[0] = 850;
+        
+        if(snakeylength[0] > 625)snakeylength[0] = 75;
+        if(snakeylength[0] < 75)snakeylength[0] = 625;
         repaint();
         
     }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_LEFT && (!right)){
+            left = true;
+            right = false;
+            up = false;
+            down = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT && (!left)){
+            left = false;
+            right = true;
+            up = false;
+            down = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_UP && (!down)){
+            left = false;
+            right = false;
+            up = true;
+            down = false;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN && (!up)){
+            left = false;
+            right = false;
+            up = false;
+            down = true;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
 }
