@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -14,6 +15,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     private int[] snakexlength = new int[750];
     private int[] snakeylength = new int[750];
     private int lengthOfSnake = 3;
+    
+    private int[] xPos = {25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,600,625,650,675,700,800,825,850,875,900,900,925,950,975,1000};
+    private int[] yPos = {75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,600,625};
+    
+    private Random random = new Random();
+    private int enemyX, enemyY;
     
     private boolean left = false;
     private boolean right = true;
@@ -28,6 +35,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     private ImageIcon upmouth = new ImageIcon(getClass().getResource("upmouth.png"));
     private ImageIcon downmouth = new ImageIcon(getClass().getResource("downmouth.png"));
     private ImageIcon snakeimage = new ImageIcon(getClass().getResource("snakeimage.png"));
+    private ImageIcon enemy = new ImageIcon(getClass().getResource("enemy.png"));
     
     private Timer timer;
     private int delay = 100;
@@ -39,6 +47,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         
         timer = new Timer(delay,this);
         timer.start();
+        
+        newEnemy();
     }
     
     @Override
@@ -61,7 +71,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
             snakeylength[0] = 100;
             snakeylength[1] = 100;
             snakeylength[2] = 100;
-            moves++;
+            
         }
         
         if(left){
@@ -80,6 +90,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         for(int i=1;i<lengthOfSnake;i++){
             snakeimage.paintIcon(this, g, snakexlength[i], snakeylength[i]);
         }
+        
+        enemy.paintIcon(this, g, enemyX, enemyY);
         
         g.dispose();
     }
@@ -121,24 +133,28 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
             right = false;
             up = false;
             down = false;
+            moves++;
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT && (!left)){
             left = false;
             right = true;
             up = false;
             down = false;
+            moves++;
         }
         if(e.getKeyCode() == KeyEvent.VK_UP && (!down)){
             left = false;
             right = false;
             up = true;
             down = false;
+            moves++;
         }
         if(e.getKeyCode() == KeyEvent.VK_DOWN && (!up)){
             left = false;
             right = false;
             up = false;
             down = true;
+            moves++;
         }
     }
 
@@ -148,6 +164,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+
+    private void newEnemy() {
+        enemyX = xPos[random.nextInt(34)];
+        enemyY = yPos[random.nextInt(23)];
     }
 
 }
