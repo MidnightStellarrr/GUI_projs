@@ -16,8 +16,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     private int[] snakeylength = new int[750];
     private int lengthOfSnake = 3;
     
-    private int[] xPos = {25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,600,625,650,675,700,800,825,850,875,900,900,925,950,975,1000};
-    private int[] yPos = {75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,600,625};
+    private int[] xPos = {25,50,75,100,125,150,175,200,225,250,275,300,325,350,
+                      375,400,425,450,475,500,525,550,575,600,625,650,675,
+                      700,725,750,775,800,825,850};
+
+    private int[] yPos = {75,100,125,150,175,200,225,250,275,300,325,350,375,
+                      400,425,450,475,500,525,550,575,600,625};
     
     private Random random = new Random();
     private int enemyX, enemyY;
@@ -28,6 +32,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     private boolean down = false;
     
     private int moves = 0;
+    private int score = 0;
     
     private ImageIcon snakeTitle = new ImageIcon(getClass().getResource("snaketitle.jpg"));
     private ImageIcon leftmouth = new ImageIcon(getClass().getResource("leftmouth.png"));
@@ -122,6 +127,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         
         if(snakeylength[0] > 625)snakeylength[0] = 75;
         if(snakeylength[0] < 75)snakeylength[0] = 625;
+        
+        collideWithEnemy();
         repaint();
         
     }
@@ -169,6 +176,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     private void newEnemy() {
         enemyX = xPos[random.nextInt(34)];
         enemyY = yPos[random.nextInt(23)];
+    }
+    
+    private void collideWithEnemy(){
+        if(snakexlength[0] == enemyX && snakeylength[0] == enemyY){
+            newEnemy();
+            lengthOfSnake++;
+            score++;
+        }
     }
 
 }
