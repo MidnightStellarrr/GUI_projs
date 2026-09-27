@@ -176,6 +176,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     private void newEnemy() {
         enemyX = xPos[random.nextInt(34)];
         enemyY = yPos[random.nextInt(23)];
+        
+        for(int i = lengthOfSnake - 1;i >= 0;i--){
+            if(snakexlength[i] == enemyX && snakeylength[i] == enemyY){
+                newEnemy();
+            }
+        }
     }
     
     private void collideWithEnemy(){
