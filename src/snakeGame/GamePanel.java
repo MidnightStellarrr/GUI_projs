@@ -1,5 +1,6 @@
 package snakeGame;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     
     private int moves = 0;
     private int score = 0;
+    private boolean gameOver = false;
     
     private ImageIcon snakeTitle = new ImageIcon(getClass().getResource("snaketitle.jpg"));
     private ImageIcon leftmouth = new ImageIcon(getClass().getResource("leftmouth.png"));
@@ -98,6 +100,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         
         enemy.paintIcon(this, g, enemyX, enemyY);
         
+        if(gameOver){
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial",Font.BOLD,50));
+            g.drawString("Game Over", 300, 300);
+            
+            g.setFont(new Font("Arial",Font.PLAIN,20));
+            g.drawString("Press SPACE to Restart", 320, 350);
+            
+        }
         g.dispose();
     }
 
@@ -129,6 +140,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         if(snakeylength[0] < 75)snakeylength[0] = 625;
         
         collideWithEnemy();
+        collidesWithBody();
         repaint();
         
     }
@@ -189,6 +201,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
             newEnemy();
             lengthOfSnake++;
             score++;
+        }
+    }
+    
+    private void collidesWithBody(){
+        for(int i = lengthOfSnake - 1;i > 0; i--){
+            if(snakexlength[i] == snakexlength[0] && snakeylength[i] == snakeylength[0]){
+                timer.stop();
+                gameOver = true;
+            }
         }
     }
 
