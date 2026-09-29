@@ -147,6 +147,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            restart();
+            
+        }
+        
         if(e.getKeyCode() == KeyEvent.VK_LEFT && (!right)){
             left = true;
             right = false;
@@ -211,6 +216,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
                 gameOver = true;
             }
         }
+    }
+    
+    private void restart(){
+        gameOver = false;
+        moves = 0;
+        score = 0;
+        lengthOfSnake = 3;
+        left = false;
+        right = true;
+        up = false;
+        down = false;
+        timer.start();
     }
 
 }
