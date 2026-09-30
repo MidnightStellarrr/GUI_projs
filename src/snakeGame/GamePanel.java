@@ -109,6 +109,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
             g.drawString("Press SPACE to Restart", 320, 350);
             
         }
+        
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial",Font.PLAIN,20));
+        g.drawString("Score: " + score, 750, 30);
+        g.drawString("Length: " + lengthOfSnake, 750, 50);
+        
         g.dispose();
     }
 
@@ -228,6 +234,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
         up = false;
         down = false;
         timer.start();
+        repaint();
     }
 
 }
