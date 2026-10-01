@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 public class Main {
     public static void main(String[] args) {
-    JFrame frame = new JFrame("Snake Game");
+    JFrame frame = new JFrame("Snake Game - By Hanniyahhh");
     //setBounds(x, y, width, height)
     frame.setBounds(10,10,905,700);
     frame.setResizable(false);

@@ -62,12 +62,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     public void paint(Graphics g){
         super.paint(g);
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.drawRect(24, 10, 851, 55);
         g.drawRect(24, 74, 851, 576);
         
-        snakeTitle.paintIcon(this, g, 25, 11);
-        g.setColor(Color.black);
+        g.setColor(Color.green);
         g.fillRect(25, 75, 850, 575);
         
         if(moves == 0){
