@@ -10,6 +10,8 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
     
@@ -62,10 +64,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     public void paint(Graphics g){
         super.paint(g);
         
-        g.setColor(Color.BLACK);
-        g.drawRect(24, 10, 851, 55);
-        g.drawRect(24, 74, 851, 576);
-        
+       Graphics2D g2 = (Graphics2D) g;
+
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(5));   
+        g2.drawRect(24, 10, 851, 55);
+        g2.drawRect(24, 74, 851, 576);
+
         g.setColor(Color.green);
         g.fillRect(25, 75, 850, 575);
         
@@ -205,6 +210,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
             }
         }
     }
+    
     
     private void collideWithEnemy(){
         if(snakexlength[0] == enemyX && snakeylength[0] == enemyY){
