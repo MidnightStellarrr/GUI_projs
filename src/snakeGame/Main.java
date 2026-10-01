@@ -12,7 +12,7 @@ public class Main {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     GamePanel panel = new GamePanel();
-    panel.setBackground(Color.DARK_GRAY);
+    panel.setBackground(Color.GREEN);
     frame.add(panel);
     frame.setVisible(true);
     }
